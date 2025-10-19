@@ -47,3 +47,18 @@ for ticker, weight in zip(tickers, optimal_weights):
 print(f"\nExpected Annual Return: {opt_return*100:.2f}%")
 print(f"Annual Volatility: {opt_vol*100:.2f}%")
 print(f"Sharpe Ratio: {opt_sharpe:.3f}")
+
+plt.figure(figsize=(10,6))
+
+plt.scatter(volatlities,returns,c=sharpes,cmap="coolwarm",alpha=0.5)
+plt.colorbar(label="Sharpe Ratio")
+plt.scatter(opt_vol,opt_return, marker="*",color="black",s=650,label="Optimal") #optimal portfolio)
+
+plt.xlabel("Volatility (Risk)")
+plt.ylabel("Expected Return")
+plt.title("Efficient Frontier")
+plt.legend()
+plt.grid(False)
+
+plt.show()
+
