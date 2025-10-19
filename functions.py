@@ -17,3 +17,6 @@ data = pd.DataFrame(price_data)
 print(data.head())
 
 returns = data.pct_change().dropna() 
+
+mean_returns = returns.mean() * 252 #252 trading days p.y.
+cov_matrix = returns.cov() * 252 
