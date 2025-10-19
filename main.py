@@ -52,7 +52,7 @@ plt.figure(figsize=(10,6))
 
 plt.scatter(volatlities,returns,c=sharpes,cmap="coolwarm",alpha=0.5)
 plt.colorbar(label="Sharpe Ratio")
-plt.scatter(opt_vol,opt_return, marker="*",color="black",s=650, label=f'Optimal (Sharpe={opt_sharpe:.2f})') #optimal portfolio)
+plt.scatter(opt_vol,opt_return, marker="*",color="black",s=650, label=f"Optimal (Sharpe={opt_sharpe:.2f})") #optimal portfolio
 
 plt.xlabel("Volatility (Risk)")
 plt.ylabel("Expected Return")
