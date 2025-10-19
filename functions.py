@@ -29,4 +29,4 @@ def portfolio_performance(weights, mean_returns, cov_matrix):
 def negative_sharpe(weights, mean_returns, cov_matrix, risk_free_rate = 0.02): 
     p_return, p_vol = portfolio_performance(weights, mean_returns, cov_matrix) 
     sharpe = (p_return-risk_free_rate)/p_vol #formula for sharpe ratio
-    return -sharpe # numpy doesn't have maximize(), returning -sharpe to find the best portfolio
+    return -sharpe # scipy doesn't have maximize(), returning -sharpe to find the best portfolio
