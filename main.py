@@ -23,6 +23,7 @@ bounds = tuple((0,0.33) for _ in range(num_assets)) #the potential weights for e
 
 mean_returns = returns.mean() * 252 #252 trading days p.y.
 cov_matrix = returns.cov() * 252 
+random_portfolios = generate_random_portfolios(5000,mean_returns,cov_matrix)
 
 result = minimize(negative_sharpe,initial_guess,args=(mean_returns,cov_matrix),method='SLSQP',bounds=bounds,constraints=constraints) #calculate optimal weights and sharpe for those weights
 
