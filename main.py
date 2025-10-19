@@ -1,5 +1,6 @@
 from functions import *
 from scipy.optimize import minimize
+import matplotlib.pyplot as plt 
 
 
 tickers = get_tickers()
@@ -23,14 +24,21 @@ bounds = tuple((0,0.33) for _ in range(num_assets)) #the potential weights for e
 
 mean_returns = returns.mean() * 252 #252 trading days p.y.
 cov_matrix = returns.cov() * 252 
-random_portfolios = generate_random_portfolios(5000,mean_returns,cov_matrix)
 
+
+results = generate_random_portfolios(5000,mean_returns,cov_matrix) #not to be mixed with result which is used for the optimized portfolio
 result = minimize(negative_sharpe,initial_guess,args=(mean_returns,cov_matrix),method='SLSQP',bounds=bounds,constraints=constraints) #calculate optimal weights and sharpe for those weights
 
 optimal_weights = result.x
 
 opt_return, opt_vol = portfolio_performance(weights=optimal_weights,mean_returns=mean_returns,cov_matrix=cov_matrix) # calculating the optimal returns and volatility and unpacking directly 
 opt_sharpe = (opt_return-0.02)/opt_vol # new optimal sharpe with opt weights
+
+
+volatlities = results[0,:] #collecting all of the volatilities from the random portfolios
+returns = results[1,:] #collecting all of the returns data from the random portfolios
+sharpes = results[2,:] #collecting all of the sharpe ratios from the random portfolios
+
 
 print("=== OPTIMAL PORTFOLIO ===")
 for ticker, weight in zip(tickers, optimal_weights):
