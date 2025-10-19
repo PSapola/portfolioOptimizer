@@ -14,8 +14,6 @@ for ticker in tickers:
     price_data[ticker] = get_stock_data['Close'].squeeze() #.squeeze() from DataFrame to series
 
 data = pd.DataFrame(price_data)
-print(data.head())
-
 returns = data.pct_change().dropna() 
 
 mean_returns = returns.mean() * 252 #252 trading days p.y.
