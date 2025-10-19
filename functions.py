@@ -33,5 +33,5 @@ def negative_sharpe(weights, mean_returns, cov_matrix, risk_free_rate = 0.02):
 
 num_assets = len(tickers) 
 initial_guess = num_assets * (1/num_assets) #initial weight guess, even split between the number of stocks
-constaints = {'type': 'eq', 'fun': lambda x: np.sum(x) - 1} # the sum of all constraints - 1 MUST equal 0, if not, we have "money" sitting uninvested 
-bounds = tuple((0,1 for _ in range(num_assets))) #the potential weights for each stock. NO short selling (no negative weights)
+constraints = {'type': 'eq', 'fun': lambda x: np.sum(x) - 1} # the sum of all constraints - 1 MUST equal 0, if not, we have "money" sitting uninvested 
+bounds = tuple((0,1) for _ in range(num_assets)) #the potential weights for each stock. NO short selling (no negative weights)
