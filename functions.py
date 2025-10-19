@@ -23,5 +23,5 @@ cov_matrix = returns.cov() * 252
 
 def portfolio_performance(weights, mean_returns, cov_matrix):
     portfolio_return = np.sum(weights*mean_returns) #calculate portfolio returns
-    portfolio_volatility = np.sqrt(np.dot(weights.T,np.dot(cov_matrix*weights))) #calculate portfolio volatility
+    portfolio_volatility = np.sqrt(np.dot(weights.transpose(),np.dot(cov_matrix,weights))) #calculate portfolio volatility
     return portfolio_return, portfolio_volatility
