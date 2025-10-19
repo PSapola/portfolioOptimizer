@@ -36,4 +36,5 @@ initial_guess = num_assets * [1/num_assets] #initial weight guess, even split be
 constraints = {'type': 'eq', 'fun': lambda x: np.sum(x) - 1} # the sum of all constraints - 1 MUST equal 0, if not, we have "money" sitting uninvested 
 bounds = tuple((0,1) for _ in range(num_assets)) #the potential weights for each stock. NO short selling (no negative weights)
 
-
+result = minimize(negative_sharpe,initial_guess,args=(mean_returns,cov_matrix),method='SLSQP',bounds=bounds,constraints=constraints) #calculate optimal weights and sharpe for those weights
+print(result)
