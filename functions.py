@@ -9,5 +9,8 @@ tickers = ['AAPL', 'MSFT', 'GOOGL', 'AVGO', 'UNH']
 price_data = {}
 
 for ticker in tickers:
-    get_stock_data = yf.download(ticker,start='2020-01-01',end='2025-10-19')
-    price_data[ticker] = get_stock_data['Close']
+    get_stock_data = yf.download(ticker,start='2020-01-01',end='2025-10-19',progress=False)
+    price_data[ticker] = get_stock_data['Close'].squeeze()
+
+data = pd.DataFrame(price_data)
+print(data.head())
